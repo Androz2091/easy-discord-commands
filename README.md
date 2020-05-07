@@ -18,6 +18,7 @@ const bot = new EasyDiscordCommands.Bot();
 bot
 .setToken("YOUR_DISCORD_BOT_TOKEN")
 .setPrefix("!")
+.showPrefixOnMention(true)
 .connect();
 
 // Now, you can add commands

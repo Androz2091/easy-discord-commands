@@ -4,4 +4,5 @@ export interface BotOptions {
     prefix: string;
     token: string;
     clientOptions: ClientOptions;
+    showPrefixOnMention: boolean;
 };

@@ -13,23 +13,27 @@ export class Bot extends EventEmitter {
 
     public client?: Client;
     public prefix: string;
+    public showPrefixOnMention: boolean;
     public clientOptions: ClientOptions;
     private token: string;
 
     constructor(options: BotOptions = {
         prefix: "!",
         token: "",
-        clientOptions: {}
+        clientOptions: {},
+        showPrefixOnMention: true
     }){
         super();
         this.commands = [];
         this.prefix = options.prefix || "!";
         this.token = options.token || "";
+        this.showPrefixOnMention = options.showPrefixOnMention || true;
         this.clientOptions = options.clientOptions || {};
 
         this.messages = {
             missingPermissions: "You don't have the right permissions to run this command!",
-            guildOnly: "This command can only be run on a server!"
+            guildOnly: "This command can only be run on a server!",
+            showPrefix: "the prefix of this server is {{prefix}}!"
         };
     }
 
@@ -73,9 +77,12 @@ export class Bot extends EventEmitter {
     }
 
     handleMessage(message: Message) {
+        if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) {
+            message.reply(this.messages.showPrefix.replace("{{prefix}}", this.prefix));
+        }
         const args = message.content.slice(this.prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
-        const cmd = this.commands.find((c) => c.name === command || (c.data.aliases || []).includes(command));
+        const cmd = this.commands.find((c) => c.name === command || ((c.data.aliases || []).includes(command)));
         if(cmd){
             if(message.guild){
                 if(
