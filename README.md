@@ -16,7 +16,7 @@ npm install easy-discord-commands
 const EasyDiscordCommands = require("easy-discord-commands");
 const bot = new EasyDiscordCommands.Bot();
 bot
-.setToken("YOUR_DISCORD_BOT")
+.setToken("YOUR_DISCORD_BOT_TOKEN")
 .setPrefix("!")
 .connect();
 
@@ -50,7 +50,7 @@ bot.addCommand("say", {
 const { Bot, BaseCommands } = require("easy-discord-commands");
 
 const bot = new Bot()
-.setToken("YOUR_DISCORD_TOKEN") // define bot token
+.setToken("YOUR_DISCORD_BOT_TOKEN") // define bot token
 .setPrefix("!"); // define bot prefix
 
 // Register a new simple command
