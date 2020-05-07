@@ -1,0 +1,39 @@
+{
+  "name": "easy-discord-commands",
+  "version": "1.0.0",
+  "description": "Simple framework to create commands using Discord.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Androz2091/easy-discord-commands.git"
+  },
+  "keywords": [
+    "discord",
+    "discord.js",
+    "commands",
+    "framework",
+    "easy",
+    "commander"
+  ],
+  "author": "Androz2091",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Androz2091/easy-discord-commands/issues"
+  },
+  "homepage": "https://github.com/Androz2091/easy-discord-commands#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.2",
+    "@types/ws": "^7.2.4",
+    "typescript": "^3.7.4"
+  }
+}
