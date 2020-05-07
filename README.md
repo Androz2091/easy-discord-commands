@@ -15,7 +15,10 @@ npm install easy-discord-commands
 ```js
 const EasyDiscordCommands = require("easy-discord-commands");
 const bot = new EasyDiscordCommands.Bot();
-bot.setToken("YOUR_DISCORD_BOT").connect();
+bot
+.setToken("YOUR_DISCORD_BOT")
+.setPrefix("!")
+.connect();
 
 // Now, you can add commands
 ```
