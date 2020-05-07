@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { Client, ClientOptions, Message, PermissionString } from "discord.js";
+import { Client, ClientOptions, Message, PermissionString, TextChannel } from "discord.js";
 import { BotOptions, Command, CommandData } from "../types";
 
 interface MessageData {
@@ -31,7 +31,8 @@ export class Bot extends EventEmitter {
         this.clientOptions = options.clientOptions || {};
 
         this.messages = {
-            missingPermissions: "You don't have the right permissions to run this command!",
+            memberMissingPermissions: "You don't have the right permissions to run this command!",
+            botMissingPermissions: "I don't have the right permissions to run this command!",
             guildOnly: "This command can only be run on a server!",
             showPrefix: "the prefix of this server is {{prefix}}!"
         };
@@ -92,9 +93,12 @@ export class Bot extends EventEmitter {
             if(message.guild){
                 if(
                     (cmd.data.ownerOnly && (message.guild.ownerID !== message.author.id)) ||
-                    (cmd.data.permissions && !message.member.hasPermission(cmd.data.permissions))
+                    (cmd.data.memberPermissions && !message.member.hasPermission(cmd.data.memberPermissions))
                 ){
-                    return message.channel.send(this.messages.missingPermissions);
+                    return message.channel.send(this.messages.memberMissingPermissions);
+                }
+                if(cmd.data.botPermissions && !(message.channel as TextChannel).permissionsFor(message.guild.me).has(cmd.data.botPermissions)){
+                   return message.channel.send(this.messages.botMissingPermissions);
                 }
             } else if(cmd.data.guildOnly){
                 return message.channel.send(this.messages.guildOnly);

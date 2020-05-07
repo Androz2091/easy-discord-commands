@@ -40,7 +40,8 @@ bot.addCommand("say", {
     },
     aliases: [ "tell" ],
     ownerOnly: true, // or use permissions, like below
-    permissions: [ "ADMINISTRATOR" ],
+    botPermissions: [ "SEND_MESSAGES" ],
+    memberPermissions: [ "ADMINISTRATOR" ],
     guildOnly: true // command can only be run on a server
 });
 ```
@@ -67,7 +68,8 @@ bot.addCommand("say", {
     },
     aliases: [ "tell" ],
     ownerOnly: true, // or use permissions, like below
-    permissions: [ "ADMINISTRATOR" ],
+    botPermissions: [ "SEND_MESSAGES" ]
+    memberPermissions: [ "ADMINISTRATOR" ],
     guildOnly: true // command can only be run on a server
 });
 

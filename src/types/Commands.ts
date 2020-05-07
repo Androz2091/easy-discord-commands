@@ -8,7 +8,8 @@ export interface CommandData {
     run?: CommandCallback;
     reply?: string;
     ownerOnly?: boolean;
-    permissions?: PermissionString[];
+    botPermissions?: PermissionString[];
+    memberPermissions?: PermissionString[];
     aliases?: string[];
     guildOnly?: boolean;
 };
