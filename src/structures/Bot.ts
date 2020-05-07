@@ -58,7 +58,7 @@ export class Bot extends EventEmitter {
     connect(){
         return new Promise((resolve) => {
             this.client = new Client(this.clientOptions || {});
-            this.client.on('message', this.handleMessage);
+            this.client.on('message', (message) => this.handleMessage.call(this, message));
             this.client.on('ready', resolve);
             this.client.login(this.token);
         });
