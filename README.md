@@ -2,6 +2,12 @@
 
 Simple Discord bot framework.
 
+## Installation
+
+```sh
+npm install easy-discord-commands
+```
+
 ## Methods
 
 ### Create bot instance
@@ -33,11 +39,6 @@ bot.addCommand("say", {
     permissions: [ "ADMINISTRATOR" ],
     guildOnly: true // command can only be run on a server
 });
-```
-
-### Init bot
-
-```js
 ```
 
 ## Example
