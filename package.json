@@ -1,6 +1,6 @@
 {
   "name": "easy-discord-commands",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple framework to create commands using Discord.js",
   "main": "lib/index.js",
   "files": [
