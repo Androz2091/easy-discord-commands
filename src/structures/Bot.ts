@@ -45,6 +45,14 @@ export class Bot extends EventEmitter {
 
     setClientOptions(options: ClientOptions): Bot {
         this.clientOptions = options;
+        return this;
+    }
+
+    updateMessages(messages: MessageData): Bot {
+        for(const i in messages){
+            this.messages[i] = messages[i];
+        }
+        return this;
     }
 
     connect(){
