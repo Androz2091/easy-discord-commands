@@ -33,29 +33,35 @@ export class Bot extends EventEmitter {
         };
     }
 
-    setToken(token: string){
+    setToken(token: string): Bot {
         this.token = token;
+        return this;
     }
 
-    setPrefix(prefix: string){
+    setPrefix(prefix: string): Bot {
         this.prefix = prefix;
+        return this;
     }
 
-    setClientOptions(options: ClientOptions){
+    setClientOptions(options: ClientOptions): Bot {
         this.clientOptions = options;
     }
 
     connect(){
-        this.client = new Client(this.clientOptions || {});
-        this.client.on('message', this.handleMessage);
-        this.client.login(this.token);
+        return new Promise((resolve) => {
+            this.client = new Client(this.clientOptions || {});
+            this.client.on('message', this.handleMessage);
+            this.client.on('ready', resolve);
+            this.client.login(this.token);
+        });
     }
 
-    addCommand(commandName: string, commandData: CommandData){
+    addCommand(commandName: string, commandData: CommandData): Bot{
         this.commands.push({
             name: commandName,
             data: commandData || {}
         });
+        return this;
     }
 
     handleMessage(message: Message) {
