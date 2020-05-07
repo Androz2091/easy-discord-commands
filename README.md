@@ -2,6 +2,44 @@
 
 Simple Discord bot framework.
 
+## Methods
+
+### Create bot instance
+
+```js
+const EasyDiscordCommands = require("easy-discord-commands");
+const bot = new EasyDiscordCommands.Bot();
+bot.setToken("YOUR_DISCORD_BOT").connect();
+
+// Now, you can add commands
+```
+
+### Add commands
+
+```js
+// Simple command
+bot.addCommand("test", {
+    reply: "You ran test command!"
+});
+
+// Complex command
+bot.addCommand("say", {
+    run: (message, args) => {
+        message.delete();
+        message.channel.send(args.join(" "));
+    },
+    aliases: [ "tell" ],
+    ownerOnly: true, // or use permissions, like below
+    permissions: [ "ADMINISTRATOR" ],
+    guildOnly: true // command can only be run on a server
+});
+```
+
+### Init bot
+
+```js
+```
+
 ## Example
 
 ```js
@@ -12,14 +50,12 @@ const bot = new Bot()
 .setPrefix("!"); // define bot prefix
 
 // Register a new simple command
-bot.addCommand({
-    name: "test",
+bot.addCommand("test", {
     reply: "You ran the test command"
 });
 
 // Register a new complex command
-bot.addCommand({
-    name: "say",
+bot.addCommand("say", {
     run: (message, args) => {
         message.delete();
         message.channel.send(args.join(" "));
@@ -31,8 +67,7 @@ bot.addCommand({
 });
 
 // Register base commands
-bot.addCommand({
-    name: "ping",
+bot.addCommand("ping", {
     run: BaseCommands.ping.data.run
 });
 
