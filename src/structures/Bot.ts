@@ -13,7 +13,7 @@ export class Bot extends EventEmitter {
 
     public client?: Client;
     public prefix: string;
-    public showPrefixOnMention: boolean;
+    public prefixShownOnMention: boolean;
     public clientOptions: ClientOptions;
     private token: string;
 
@@ -27,7 +27,7 @@ export class Bot extends EventEmitter {
         this.commands = [];
         this.prefix = options.prefix || "!";
         this.token = options.token || "";
-        this.showPrefixOnMention = options.showPrefixOnMention || true;
+        this.prefixShownOnMention = options.showPrefixOnMention || true;
         this.clientOptions = options.clientOptions || {};
 
         this.messages = {
@@ -44,6 +44,11 @@ export class Bot extends EventEmitter {
 
     setPrefix(prefix: string): Bot {
         this.prefix = prefix;
+        return this;
+    }
+
+    showPrefixOnMention(newStatus: boolean): Bot {
+        this.prefixShownOnMention = newStatus;
         return this;
     }
 
