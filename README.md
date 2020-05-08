@@ -68,7 +68,7 @@ bot.addCommand("say", {
     },
     aliases: [ "tell" ],
     ownerOnly: true, // or use permissions, like below
-    botPermissions: [ "SEND_MESSAGES" ]
+    botPermissions: [ "SEND_MESSAGES" ],
     memberPermissions: [ "ADMINISTRATOR" ],
     guildOnly: true // command can only be run on a server
 });
